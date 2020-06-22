@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Title="Cook at home"
+             x:Class="cootathome.Views.RecipeDetailView">
+
+    
+    <Grid RowSpacing="2" BackgroundColor="Black">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="5" RowSpacing="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="180"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Entry Grid.Column="0" Placeholder="Recipe Name" PlaceholderColor="White" TextColor="White" FontSize="20" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding SelectedRecipeName}" IsReadOnly="{Binding IsEditable}"/>
+            <Button Grid.Column="1" Margin="80,0,0,16" BackgroundColor="#DAB30A" TextColor="WhiteSmoke" Text="Delete Recipe" Command="{Binding DeleteRecipe}"/>
+        </Grid>
+
+        <Image Grid.Row="1" VerticalOptions="Start" Margin="2,2,1,2" Source="{Binding SelectedRecipeImage}" Aspect="AspectFit"></Image>
+        <Button Grid.Row="2" BackgroundColor="DarkGray" TextColor="White" Text="Add image" Command="{Binding UploadNewImage}" IsVisible="{Binding IsUploadVisible}"/>
+
+        <Editor Grid.Row="3" Placeholder="Recipe Description" PlaceholderColor="White" Text="{Binding SelectedRecipeDescription}" Margin="3" FontSize="Medium" IsSpellCheckEnabled="True" TextColor="White" IsReadOnly="{Binding IsEditable}" ></Editor>
+
+        <Grid Grid.Row="4" RowSpacing="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Margin=" 0,0,0,10" BackgroundColor="DarkGray" TextColor="White" Text="Read the description" Command="{Binding ReadDescription}" IsVisible="{Binding IsReadDescriptionVisible}"/>
+            <Label Grid.Column="0" Text="{Binding CannotReadText}" HorizontalTextAlignment="Center" IsVisible="{Binding isMessageVisible}"></Label>
+        </Grid>
+        
+        <Grid Grid.Row="5" RowSpacing="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" BackgroundColor="#DAB30A" TextColor="WhiteSmoke" Text="Edit Recipe" Command="{Binding EditRecipe}" IsVisible="{Binding IsEditVisible}"/>
+            <Button Grid.Column="0" BackgroundColor="#DAB30A" TextColor="WhiteSmoke" Text="Save Recipe" Command="{Binding SaveRecipe}" IsVisible="{Binding IsSaveVisible}" />
+        </Grid>
+
+    </Grid>
+
+</ContentPage>

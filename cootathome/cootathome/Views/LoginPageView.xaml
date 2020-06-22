@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Title="Cook at home"
+             BackgroundImageSource="Background.jpeg"
+             x:Class="cootathome.Views.LoginPageView">
+
+    <Grid Padding="20,80,20,1" BackgroundColor="WhiteSmoke" Opacity="0.90">
+        <Grid Margin="14" RowSpacing="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition><RowDefinition Height="70"></RowDefinition><RowDefinition Height="60"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition><RowDefinition Height="50"></RowDefinition><RowDefinition Height="120"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Margin="3" Grid.Row="0">
+                <Label Text="Sign in" VerticalOptions="EndAndExpand" TextColor="Black" FontSize="Large" FontAttributes="Bold"/>
+            </Grid>
+            <Grid Grid.Row="1" Padding="0,20,0,0">
+                <Entry  Placeholder="Username or Email"  WidthRequest="100" ClearButtonVisibility="WhileEditing" Text="{Binding UserName, Mode=TwoWay}" />
+            </Grid>
+            <Grid Grid.Row="2" Padding="0,10,0,0">
+                <Entry  IsPassword="True" Placeholder="Password"  ClearButtonVisibility="WhileEditing"  WidthRequest="100" Text="{Binding Password, Mode=TwoWay}"/>
+            </Grid>
+            <Grid Grid.Row="3">
+                <Label  Text="Forgot your password?" VerticalTextAlignment="Start" FontAttributes="Italic" HorizontalOptions="EndAndExpand" TextDecorations="Underline">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer            
+                                        Command="{Binding ChangePasswordCommand}"  
+                                        NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+            <Grid Grid.Row="4">
+                <Label  Text="{Binding ErrorMsg, Mode=TwoWay}" FontSize="14" TextColor="Red" VerticalTextAlignment="Center"/>
+            </Grid>
+            <Grid Grid.Row="5" Padding="0,70,0,0">
+                <Button BackgroundColor="#DAB30A" TextColor="WhiteSmoke" Text="Login" Command="{Binding LoginCommand}"/>
+            </Grid>
+            <Grid Grid.Row="6" Padding="0,10,0,0">
+                <Label  Text="Register today!" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" TextDecorations="Underline">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer            
+                                        Command="{Binding RegisterCommand}"  
+                                        NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentPage>

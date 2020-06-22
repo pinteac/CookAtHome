@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Title="Cook at home"
+             x:Class="cootathome.Views.RegisterPageView">
+
+    <Grid Padding="20,30,20,1" BackgroundColor="WhiteSmoke">
+
+        <Grid Margin="14" RowSpacing="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="70"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="80"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid Margin="3" Grid.Row="0">
+                <Label Text="Register" VerticalOptions="EndAndExpand" TextColor="Black" FontSize="Large" FontAttributes="Bold"/>
+            </Grid>
+            <Grid Grid.Row="1" Padding="0,20,0,0">
+                <Entry Placeholder="First name" WidthRequest="100" TextColor="Black" ClearButtonVisibility="WhileEditing" Text="{Binding RegisterFirstName, Mode=OneWayToSource}"/>
+            </Grid>
+
+            <Entry Grid.Row="2" Placeholder="Last name" WidthRequest="100" TextColor="Black" ClearButtonVisibility="WhileEditing" Text="{Binding RegisterLastName, Mode=OneWayToSource}"/>
+            <Entry Grid.Row="3" Placeholder="User name" WidthRequest="100" TextColor="Black" ClearButtonVisibility="WhileEditing" Text="{Binding RegisterUserName, Mode=OneWayToSource}"/>
+            <Entry Grid.Row="4" IsPassword="True" Placeholder="Password" WidthRequest="100" TextColor="Black" ClearButtonVisibility="WhileEditing" Text="{Binding RegisterPassword, Mode=OneWayToSource}"/>
+            <Entry Grid.Row="5" IsPassword="True" Placeholder="Confim Password" WidthRequest="100" TextColor="Black" ClearButtonVisibility="WhileEditing" Text="{Binding RegisterConfirmPassword, Mode=OneWayToSource}"/>
+            <Entry Grid.Row="6" Placeholder="Email" WidthRequest="100" TextColor="Black" ClearButtonVisibility="WhileEditing" Text="{Binding RegisterEmail, Mode=OneWayToSource}"/>
+            <Label Grid.Row="7" Text="{Binding RegisterErrorMsg, Mode=TwoWay}" TextColor="Red" FontSize="14" VerticalTextAlignment="End"/>
+            
+            <Grid Grid.Row="8" Padding="0,30,0,0">
+                <Button BackgroundColor="#DAB30A" TextColor="WhiteSmoke" Text="Register" Command="{Binding RegisterCommand}"/>
+            </Grid>
+
+
+            <Label Grid.Row="9" Text="Are you already registered?" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" TextDecorations="Underline" >
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer            
+                                        Command="{Binding LoginCommand}"  
+                                        NumberOfTapsRequired="1" />
+                </Label.GestureRecognizers>
+            </Label>
+
+        </Grid>
+    </Grid>
+
+</ContentPage>

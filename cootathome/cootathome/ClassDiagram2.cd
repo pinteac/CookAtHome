@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="cootathome.ViewModels.HomePageViewModel">
+    <Position X="5.5" Y="3.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAEAgAAAAAAAwYAAIAEAIgEAgCAAEEAAhABAAAAAAIA=</HashCode>
+      <FileName>ViewModels\HomePageViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_categoriesDataService" />
+      <Field Name="_navigationService" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="cootathome.ViewModels.BaseViewModel">
+    <Position X="6.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAQCAIAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\BaseViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="cootathome.ViewModels.LoginPageViewModel">
+    <Position X="8.75" Y="3.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAABAAABIAAAAAEAIAAAAICCQQIABkWAAAA=</HashCode>
+      <FileName>ViewModels\LoginPageViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_navigationService" />
+      <Field Name="_userDataService" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="cootathome.ViewModels.RegisterPageViewModel">
+    <Position X="11.5" Y="3.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAABBAAEkIAAgAAAAAACQAASASAKACkGAAAA=</HashCode>
+      <FileName>ViewModels\RegisterPageViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_navigationService" />
+      <Field Name="_userDataService" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="cootathome.ViewModels.ChangePasswordViewModel">
+    <Position X="3.75" Y="3.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAABAAAAIAAgAAAAEAAAAQAAQCICEgUACAA=</HashCode>
+      <FileName>ViewModels\ChangePasswordViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_navigationService" />
+      <Field Name="_userDataService" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="cootathome.ViewModels.AddNewReceipeViewModel">
+    <Position X="0.5" Y="2.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>KiBAAAAgAACgBMiEIAEAIGAAACAAAAQAxAThAAAAAAA=</HashCode>
+      <FileName>ViewModels\AddNewReceipeViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_navigationService" />
+      <Field Name="_recipeDataService" />
+      <Field Name="_categoriesDataService" />
+    </ShowAsAssociation>
+  </Class>
+  <Interface Name="cootathome.Services.ICategoriesDataService">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACIAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\ICategoriesDataService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="cootathome.Services.INavigationService">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAADAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\INavigationService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="cootathome.Services.IUserDataService">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAQAAAAAAAAAAAAAAAAIAAAAgQAAAAAEAAAA=</HashCode>
+      <FileName>Services\IUserDataService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="cootathome.Services.IRecipeDataService">
+    <Position X="10.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAQAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Services\IRecipeDataService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

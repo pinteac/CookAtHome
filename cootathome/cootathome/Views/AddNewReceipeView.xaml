@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:behaviors="clr-namespace:cootathome.Behaviors"
+             mc:Ignorable="d"
+             Title="Cook at home"
+             x:Class="cootathome.Views.AddNewReceipeView">
+
+    <Grid Padding="20,50,20,20" BackgroundColor="WhiteSmoke">
+
+        <Grid Margin="5" RowSpacing="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="60"></RowDefinition>
+                <RowDefinition Height="220"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="70"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" RowSpacing="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Picker Grid.Column="0" HeightRequest="50" Title="Select a category" FontSize="Medium" ItemsSource="{Binding selectedCategory}" ItemDisplayBinding="{Binding CategoryName}" SelectedItem="{Binding TheSelectedCategory}"></Picker>
+                <Button Grid.Column="1" BackgroundColor="#DAB30A" TextColor="WhiteSmoke" Text="Add Category" Command="{Binding AddNewCategory}" Margin="50,0,0,7" FontSize="13" Padding="0,0,0,0" ></Button>
+            </Grid>
+
+            <Entry Grid.Row="1" Margin="0,10,0,0" Placeholder="Recipe Name" ClearButtonVisibility="WhileEditing" WidthRequest="100" TextColor="Black" Text="{Binding AddRecipeName, Mode=TwoWay}"/>
+            <Editor Grid.Row="2" Placeholder="Description" WidthRequest="100" TextColor="Black" Text="{Binding AddRecipeDescription, Mode=TwoWay}"/>
+
+            <Button Grid.Row="3" Margin="0,0,0,0" Text="Add image" WidthRequest="100" TextColor="White" BackgroundColor="Black" Opacity="0.5" Command="{Binding AddRecipeImageURL}"/>
+            <Label Grid.Row="4" Text="{Binding ANRErrorMsg, Mode=TwoWay}" TextColor="Red"/>
+            <Button Grid.Row="5" Margin="0,20,0,0" BackgroundColor="#DAB30A" TextColor="WhiteSmoke" Text="Add recipe" Command="{Binding AddRecipe}"/>
+
+
+        </Grid>
+    </Grid>
+</ContentPage>

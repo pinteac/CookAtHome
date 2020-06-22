@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Title="Cook at home"
+             x:Class="cootathome.Views.AddCategoryView">
+
+    <Grid Padding="20,50,20,20" BackgroundColor="WhiteSmoke">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="100"></RowDefinition>
+                <RowDefinition Height="70"></RowDefinition>
+                <RowDefinition Height="60"></RowDefinition>
+                <RowDefinition Height="200"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Text="Add a new Category" FontSize="20" FontAttributes="Bold" TextColor="Black"/>
+            
+            <Entry Grid.Row="1" Margin="0,50,0,0" Placeholder="Category Name" WidthRequest="100" ClearButtonVisibility="WhileEditing" TextColor="Black" Text="{Binding AddCategoryName, Mode=OneWayToSource}"/>
+            <Button Grid.Row="2" Margin="0,20,0,0" TextColor="White" Text="Add image" BackgroundColor="Black" Opacity="0.5" Command="{Binding AddCategoryImageURL}"/>
+            <Label Grid.Row="3" Margin="0,10,0,0" TextColor="Red" Text="{Binding ACErrorMsg, Mode=TwoWay}"/>
+            <Button Grid.Row="4" Margin="0,150,0,0" BackgroundColor="#DAB30A" TextColor="WhiteSmoke" Text="Add Category" Command="{Binding AddNewCategory}"/>
+
+        </Grid>
+    </Grid>
+</ContentPage>

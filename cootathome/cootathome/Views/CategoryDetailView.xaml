@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:behaviors="clr-namespace:cootathome.Behaviors"
+             mc:Ignorable="d"
+             Title="Cook at home"
+             x:Class="cootathome.Views.CategoryDetailView">
+
+    <Grid BackgroundColor="Black">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="5" ColumnSpacing="2" BackgroundColor="Black" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="180"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" FontSize="24" FontAttributes="Bold" TextColor="WhiteSmoke" BackgroundColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Padding="10,0,0,0" Text="{Binding SelectedCategoryName}" Opacity="0.75"/>
+            <Button Grid.Column="1" BackgroundColor="#DAB30A" TextColor="WhiteSmoke" Text="Delete Category" Command="{Binding DeleteCategory}" Margin="50,0,0,0"/>
+        </Grid>
+
+        <ListView HasUnevenRows="True" Grid.Row="1" ItemsSource="{Binding Recipes}"
+                        x:Name="CategoryListView" CachingStrategy="RecycleElement"  >
+            <ListView.Behaviors>
+                <behaviors:EventToCommandBehavior 
+                                EventName="ItemTapped"  
+                                Command="{Binding RecipeSelectedCommand}" 
+                                EventArgsConverter="{StaticResource LocalItemTappedConverter}">
+                </behaviors:EventToCommandBehavior>
+            </ListView.Behaviors>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid HeightRequest="250"  Margin="5" BackgroundColor="Black" RowSpacing="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Text="{Binding Name}" Margin="3" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="20" TextColor="WhiteSmoke"></Label>
+                            <Image Grid.Row="1" VerticalOptions="Start" Margin="2,2,1,2" Source="{Binding ImageURL}" Aspect="AspectFill"></Image>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </Grid>
+    
+</ContentPage>
