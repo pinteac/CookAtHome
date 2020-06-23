@@ -27,6 +27,7 @@ namespace cootathome.ViewModels
         private string recipeName;
         private string recipeImage;
         private string recipeDescription;
+        private const string _hardcodedImage = "Plate.jpg";
 
         private bool _isReadOnly;
         private bool _visibleEditButton;
@@ -108,6 +109,8 @@ namespace cootathome.ViewModels
 
         private async void OnSaveRecipe(object obj)
         {
+            if (SelectedRecipeImage == string.Empty)
+                SelectedRecipeImage = _hardcodedImage;
             _selectedRecipe.Name = SelectedRecipeName;
             _selectedRecipe.Description = SelectedRecipeDescription;
             _selectedRecipe.ImageURL = SelectedRecipeImage;
@@ -118,6 +121,7 @@ namespace cootathome.ViewModels
             IsReadDescriptionVisible = true;
             IsSaveVisible = false;
             IsUploadVisible = false;
+            MessagingCenter.Send(this, MessageNames.RecipeUpdate);
         }
 
         private void OnEditRecipe(object obj)

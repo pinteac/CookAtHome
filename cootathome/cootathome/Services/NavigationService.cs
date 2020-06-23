@@ -32,6 +32,8 @@ namespace cootathome.Services
             MainPage.Navigation.PopToRootAsync();
         }
 
+
+
         // Navigates to the next page by pushing the next page received
         public void NavigateTo(string pageKey, object parameter = null, INavigationService obj = null)
         {

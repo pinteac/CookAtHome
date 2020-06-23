@@ -30,7 +30,7 @@ namespace cootathome.Utlity
         public const string CannotReadDescription = "Cannot read the description, because the device does not support this functionality!";
         public const string PhotoNotSupported = "Photo Upload not supported!";
 
-        public const string RecipeSuccsessfulMessage = "Recipe was added succsessfully!";
+        public const string RecipeSuccsessfulMessage = "Recipe was added successfully!";
         public const string RecipeSuccessfullyDeleted = "Recipe successfully deleted!";
 
         // Category
@@ -46,5 +46,6 @@ namespace cootathome.Utlity
         public const string RecipeException = "Recipe not added! Please try again!";
         public const string RecipeNameValidation = "Please add a recipe name!";
         public const string RecipeWithoutCategory = "Please select a category for your recipe!";
+        public const string RecipeUpdate = "Recipe has been successfully updated!";
     }
 }

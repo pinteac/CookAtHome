@@ -60,9 +60,16 @@ namespace cootathome.ViewModels
             AddCategoryImageURL = new Command(OnAddCategoryImageURL);
 
             MessagingCenter.Subscribe<RecipeDetailViewModel>(this, MessageNames.RecipeDeleted, UpdateRecipies);
+            MessagingCenter.Subscribe<RecipeDetailViewModel>(this, MessageNames.RecipeUpdate, UpdateRecipie);
             MessagingCenter.Subscribe<LoginPageViewModel, User>(this, MessageNames.TakeTheUser, OnReceiveLoggedUser);
 
             InitialStateOfPage();
+        }
+
+        private async void UpdateRecipie(RecipeDetailViewModel obj)
+        {
+            await Initialize(obj);
+            await _dialogService.ShowDialog(MessageNames.RecipeUpdate, "Success", "Ok");
         }
 
         private void InitialStateOfPage()
@@ -128,6 +135,8 @@ namespace cootathome.ViewModels
             }
             else
                 await _dialogService.ShowDialog(MessageNames.CategoryNameValidation, "Failure", "Ok");
+
+            MessagingCenter.Send(this, MessageNames.CategoryChangedMessage);
         }
 
         private async void OnAddCategoryImageURL()
