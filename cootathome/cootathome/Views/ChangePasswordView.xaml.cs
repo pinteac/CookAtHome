@@ -17,6 +17,7 @@ namespace cootathome.Views
         {
             InitializeComponent();
             BindingContext = ViewModelLocator.changePasswordViewModel;
+            NavigationPage.SetHasBackButton(this, false);
         }
     }
 }

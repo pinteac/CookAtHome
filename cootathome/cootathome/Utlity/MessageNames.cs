@@ -14,6 +14,7 @@ namespace cootathome.Utlity
         public const string RecipeAdded = "RecipeAdded";
         public const string CategoryDeleted = "CategoryDeleted";
         public const string Logout = "Logout";
+        public const string CleanUp = "CleanUp";
 
         // User
         public const string LoginBlank = "Enter your login credentials!";
@@ -38,6 +39,8 @@ namespace cootathome.Utlity
         public const string CategorySuccessfulAdd = "The new category has been successfully added!";
         public const string CategorySuccessfullyDeleted = "Category has been deleted!";
         public const string CategoryUpdateAll = "CategoryUpdateAll";
+        public const string CategoryEditFail = "The category has not been updated! Please try again!";
+        public const string CategorySuccessUpdate = "The category has been successfully updated!";
 
         // Recipe
         public const string RecipeException = "Recipe not added! Please try again!";

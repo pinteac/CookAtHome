@@ -23,7 +23,8 @@ namespace cootathome.Services
         // Move to previous page
         public void GoBack(object parameter = null)
         {
-                MainPage.Navigation.PopAsync();
+            MessagingCenter.Send(this, MessageNames.CleanUp);
+            MainPage.Navigation.PopAsync();
         }
 
         public void GoToRootPage(object parameter = null)
@@ -32,7 +33,7 @@ namespace cootathome.Services
         }
 
         // Navigates to the next page by pushing the next page received
-        public void NavigateTo(string pageKey, object parameter = null)
+        public void NavigateTo(string pageKey, object parameter = null, INavigationService obj = null)
         {
             if(pages.TryGetValue(pageKey, out Type pageType))
             {
@@ -43,6 +44,7 @@ namespace cootathome.Services
 
                 (page.BindingContext as BaseViewModel).InitializeItem(parameter);
                 (page.BindingContext as BaseViewModel).Initialize(parameter);
+                (page.BindingContext as BaseViewModel).CleanUp(obj);
             }
             else
             {

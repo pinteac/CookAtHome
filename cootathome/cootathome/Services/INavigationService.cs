@@ -1,4 +1,5 @@
-﻿using System;
+﻿using cootathome.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
@@ -15,6 +16,6 @@ namespace cootathome.Services
 
         void GoToRootPage(object pameter = null);
 
-        void NavigateTo(string pageKey, object parameter = null);
+        void NavigateTo(string pageKey, object parameter = null, INavigationService obj = null);
     }
 }

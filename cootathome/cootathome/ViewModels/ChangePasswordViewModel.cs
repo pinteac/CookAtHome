@@ -36,6 +36,10 @@ namespace cootathome.ViewModels
             ChangePasswordCommand = new Command(OnChangePasswordCommand);
         }
 
+        //public override void InitializeItem(object parameter)
+        //{
+        //    MessagingCenter.Send(this, MessageNames.CleanUp);
+        //}
         private async void OnChangePasswordCommand(object obj)
         {
             CPErrorMsg = null;

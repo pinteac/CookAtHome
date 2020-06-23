@@ -109,6 +109,12 @@ namespace cootathome.ViewModels
                         _recipe.CategoryID = TheSelectedCategory.ID;
 
                         await _recipeDataService.AddNewRecipe(_recipe);
+                        _recipe.ID = 0;
+                        _recipe.Name = null;
+                        _recipe.ImageURL = null;
+                        _recipe.Description = null;
+                        _recipe.UserID = 0;
+                        _recipe.CategoryID = 0;
                     }
                     catch (Exception)
                     {

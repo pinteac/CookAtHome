@@ -1,4 +1,5 @@
-﻿using System;
+﻿using cootathome.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -27,6 +28,9 @@ namespace cootathome.ViewModels
         }
 
         public virtual void InitializeItem(object parameter)
+        {
+        }
+        public virtual void CleanUp(INavigationService obj)
         {
         }
     }

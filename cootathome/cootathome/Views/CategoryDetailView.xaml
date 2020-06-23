@@ -9,7 +9,7 @@
 
     <Grid BackgroundColor="Black">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
 
         </Grid.RowDefinitions>
@@ -17,14 +17,30 @@
         <Grid Grid.Row="0" Margin="5" ColumnSpacing="2" BackgroundColor="Black" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="180"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="120"></ColumnDefinition>
+                <ColumnDefinition Width="120"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" FontSize="24" FontAttributes="Bold" TextColor="WhiteSmoke" BackgroundColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Padding="10,0,0,0" Text="{Binding SelectedCategoryName}" Opacity="0.75"/>
-            <Button Grid.Column="1" BackgroundColor="#DAB30A" TextColor="WhiteSmoke" Text="Delete Category" Command="{Binding DeleteCategory}" Margin="50,0,0,0"/>
+            <Entry Grid.Column="0" FontSize="24" FontAttributes="Bold" TextColor="WhiteSmoke" BackgroundColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Text="{Binding SelectedCategoryName}" Opacity="0.75" IsReadOnly="{Binding isCategoryReadOnly}"/>
+            <Button Grid.Column="1" BackgroundColor="#DAB30A" TextColor="WhiteSmoke" Text="Edit" Command="{Binding EditCategory}" Margin="25,0,10,16" IsVisible="{Binding isEditButtonVisible}" />
+            <Button Grid.Column="1" BackgroundColor="#DAB30A" TextColor="WhiteSmoke" Text="Save" Command="{Binding SaveCategory}" Margin="25,0,10,16" IsVisible="{Binding isSaveButtonVisible}"  />
+            <Button Grid.Column="2" BackgroundColor="#DAB30A" TextColor="WhiteSmoke" Text="Delete" Command="{Binding DeleteCategory}" Margin="10,0,25,16" IsEnabled="{Binding isDeleteEnabled}" />
+        </Grid>
+
+        <Grid Grid.Row="1"  HeightRequest="250"  Margin="5" BackgroundColor="Black" RowSpacing="2" IsVisible="{Binding isEditVisible}">
+            <Grid HeightRequest="250"  Margin="5" BackgroundColor="Black" RowSpacing="2">
+                <Grid.RowDefinitions>
+
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    
+                </Grid.RowDefinitions>
+                <Image Grid.Row="0" VerticalOptions="Start" Margin="2,2,1,10" Source="{Binding SelectedCategoryImageURL}" Aspect="AspectFill"></Image>
+                <Button Grid.Row="1" Margin="0,0,0,0" TextColor="White" Text="Add image" BackgroundColor="DarkGray" Command="{Binding AddCategoryImageURL}"/>
+            </Grid>
         </Grid>
 
         <ListView HasUnevenRows="True" Grid.Row="1" ItemsSource="{Binding Recipes}"
-                        x:Name="CategoryListView" CachingStrategy="RecycleElement"  >
+                        x:Name="CategoryListView" CachingStrategy="RecycleElement" IsVisible="{Binding isRecipeVisible}" >
             <ListView.Behaviors>
                 <behaviors:EventToCommandBehavior 
                                 EventName="ItemTapped"  

@@ -73,11 +73,13 @@ namespace cootathome.ViewModels
             {
                 var locales = await TextToSpeech.GetLocalesAsync();
                 Locale locale = (Locale)locales.ElementAt(50);
-
-                await TextToSpeech.SpeakAsync(SelectedRecipeDescription, new SpeechOptions()
+                if (SelectedRecipeDescription != string.Empty)
                 {
-                    Locale = locale
-                });
+                    await TextToSpeech.SpeakAsync(SelectedRecipeDescription, new SpeechOptions()
+                    {
+                        Locale = locale
+                    });
+                }
             }
             catch(Exception)
             {

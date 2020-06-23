@@ -41,8 +41,16 @@ namespace cootathome.ViewModels
             MessagingCenter.Subscribe<AddNewReceipeViewModel>(this, MessageNames.GiveMeTheUserID, OnUserIDRequest);
             MessagingCenter.Subscribe<CategoryDetailViewModel>(this, MessageNames.GiveMeTheUserID, OnUserIDRequest);
             MessagingCenter.Subscribe<HomePageViewModel>(this, MessageNames.Logout, OnLogout);
+
+            MessagingCenter.Subscribe<NavigationService>(this, MessageNames.CleanUp, CleanUp);
         }
 
+        public override void CleanUp(INavigationService obj)
+        {
+            UserName = null;
+            Password = null;
+            ErrorMsg = null;
+        }
         private void OnLogout(HomePageViewModel obj)
         {
             UserName = null;
@@ -74,28 +82,26 @@ namespace cootathome.ViewModels
             if (ErrorMsg == null)
             {
                 _navigationService.NavigateTo(ViewNames.HomePageView, MessageNames.UserLoggedIn);
-                UserName = null;
-                Password = null;
-                ErrorMsg = null;
+                //UserName = null;
+                //Password = null;
+                //ErrorMsg = null;
             }
         }
 
         private void MoveToRegister()
         {
-
             _navigationService.NavigateTo(ViewNames.RegisterPageView);
-            UserName = null;
-            Password = null;
-            ErrorMsg = null;
+            //UserName = null;
+            //Password = null;
+            //ErrorMsg = null;
         }
 
         private void MoveToChangePassword()
         {
-
             _navigationService.NavigateTo(ViewNames.ChangePasswordView);
-            UserName = null;
-            Password = null;
-            ErrorMsg = null;
+            //UserName = null;
+            //Password = null;
+            //ErrorMsg = null;
         }
 
         public string UserName
