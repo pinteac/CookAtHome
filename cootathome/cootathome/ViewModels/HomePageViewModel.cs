@@ -71,8 +71,14 @@ namespace cootathome.ViewModels
             Logout = new Command(OnLogout);
 
             MessagingCenter.Subscribe<AddCategoryViewModel>(this, MessageNames.CategoryChangedMessage, OnCategoryChanges);
+            MessagingCenter.Subscribe<CategoryDetailViewModel>(this, MessageNames.CategoryChangedMessage, OnCategoryUpdate);
             MessagingCenter.Subscribe<AddNewReceipeViewModel>(this, MessageNames.RecipeAdded, UpdateMessageAboutRecipe);
             MessagingCenter.Subscribe<CategoryDetailViewModel>(this, MessageNames.CategoryDeleted, UpdateMessageAboutCategory);
+        }
+
+        private async void OnCategoryUpdate(CategoryDetailViewModel obj)
+        {
+            Categories = (await _categoriesDataService.GetAllCategories()).ToObservableCollection();
         }
 
         private void OnLogout(object obj)
@@ -84,7 +90,7 @@ namespace cootathome.ViewModels
         private void OnRecipeSelectedCommand(Recipe obj)
         {
             _navigationService.NavigateTo(ViewNames.RecipeDetailView, obj);
-            SearchedText = string.Empty;
+            //SearchedText = string.Empty;
         }
 
         private async void UpdateMessageAboutCategory(object obj)

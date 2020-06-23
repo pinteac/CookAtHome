@@ -29,11 +29,12 @@ namespace cootathome.ViewModels
 
 
         private string errorMsg;
+        private const string _hardcodedImage = "Plate.jpg";
 
         public Recipe _recipe;
         private string recipeName;
         private string recipeDescription;
-        private string recipeImageURL;
+        private string recipeImageURL = string.Empty;
 
         public ICommand AddRecipe { get; }
 
@@ -98,10 +99,12 @@ namespace cootathome.ViewModels
             ANRErrorMsg = null;
             if (TheSelectedCategory != null)
             {
-                if (AddRecipeName != null)
+                if (AddRecipeName != string.Empty)
                 {
                     try
                     {
+                        if (recipeImageURL == string.Empty)
+                            recipeImageURL = _hardcodedImage;
                         _recipe.Name = AddRecipeName;
                         _recipe.ImageURL = recipeImageURL;
                         _recipe.Description = AddRecipeDescription;
@@ -132,7 +135,7 @@ namespace cootathome.ViewModels
             {
                 AddRecipeName = null;
                 AddRecipeDescription = null;
-                recipeImageURL = null;
+                recipeImageURL = string.Empty;
                 TheSelectedCategory = null;
                 MessagingCenter.Send(this, MessageNames.RecipeAdded);
                 _navigationService.GoBack();
