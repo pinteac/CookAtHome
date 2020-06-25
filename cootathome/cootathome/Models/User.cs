@@ -1,9 +1,4 @@
 ﻿using SQLite;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
-using Xamarin.Essentials;
 
 namespace cootathome.Models
 {

@@ -1,9 +1,6 @@
 ﻿using cootathome.Models;
 using SQLite;
-using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace cootathome.Data
@@ -27,14 +24,12 @@ namespace cootathome.Data
             return _database.Table<User>().ToListAsync();
         }
 
-
         public Task<User> GetUserByUserNameAsync(string username)
         {
                 return _database.Table<User>()
                 .Where(i => i.UserName == username || i.Email == username)
                 .FirstAsync();
         }
-
 
         public Task<int> SaveUserAsync(User user)
         {
@@ -102,6 +97,13 @@ namespace cootathome.Data
         {
             return _database.Table<Recipe>()
                         .Where(i => i.CategoryID == categoryID & i.UserID == userID)
+                        .ToListAsync();
+        }
+
+        public Task<List<Recipe>> GetAllRecipesbyUser(int userID)
+        {
+            return _database.Table<Recipe>()
+                        .Where(i =>i.UserID == userID)
                         .ToListAsync();
         }
 

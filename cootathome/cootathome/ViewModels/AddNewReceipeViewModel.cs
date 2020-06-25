@@ -2,14 +2,9 @@
 using cootathome.Services;
 using cootathome.Utlity;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
-using System.Linq;
-using Xamarin.Essentials;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 
@@ -60,6 +55,11 @@ namespace cootathome.ViewModels
             MessagingCenter.Subscribe<HomePageViewModel, ObservableCollection<Categories>>(this, MessageNames.CategoryChangedMessage, OnUpdateCategoryList);
         }
 
+        public override void CleanUp(INavigationService obj)
+        {
+            ANRErrorMsg = null;
+            recipeImageURL = string.Empty;
+        }
         private async void OnAddRecipeImage(object obj)
         {
             await CrossMedia.Current.Initialize();
@@ -99,7 +99,7 @@ namespace cootathome.ViewModels
             ANRErrorMsg = null;
             if (TheSelectedCategory != null)
             {
-                if (AddRecipeName != string.Empty)
+                if (AddRecipeName != null)
                 {
                     try
                     {
@@ -133,12 +133,12 @@ namespace cootathome.ViewModels
 
             if (ANRErrorMsg == null)
             {
+                MessagingCenter.Send(this, MessageNames.RecipeAdded);
+                _navigationService.GoBack();
                 AddRecipeName = null;
                 AddRecipeDescription = null;
                 recipeImageURL = string.Empty;
                 TheSelectedCategory = null;
-                MessagingCenter.Send(this, MessageNames.RecipeAdded);
-                _navigationService.GoBack();
             }
         }
 

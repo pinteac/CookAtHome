@@ -4,9 +4,7 @@ using cootathome.Utlity;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -24,7 +22,6 @@ namespace cootathome.ViewModels
         private Categories _selectedCategory;
         private string categoryName;
         private string imageURL;
-        private const string _hardcodedImage = "Plate.jpg";
         private bool _isCategoryReadOnly;
         private bool _isEditVisible;
         private bool _isRecipeVisible;
@@ -170,8 +167,8 @@ namespace cootathome.ViewModels
 
         public override async Task Initialize(object obj)
         {
-            
-            Recipes = (await _recipeDataService.GetAllRecipesWithID(_selectedCategory.ID, _userOnline.ID)).ToObservableCollection();
+            if (_selectedCategory != null && _userOnline != null)
+                Recipes = (await _recipeDataService.GetAllRecipesWithID(_selectedCategory.ID, _userOnline.ID)).ToObservableCollection();
         }
 
         public override void InitializeItem(object parameter)
@@ -310,10 +307,6 @@ namespace cootathome.ViewModels
                 OnPropertyChanged("isSaveButtonVisible");
             }
         }
-
-
-        
-
             
     }
 }

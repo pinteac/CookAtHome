@@ -1,11 +1,9 @@
 ﻿using cootathome.Models;
 using cootathome.Services;
 using cootathome.Utlity;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -22,7 +20,7 @@ namespace cootathome.ViewModels
 
         private ObservableCollection<Categories> _categories;
         private ObservableCollection<Recipe> _recipes;
-
+        private User _userOnline;
         private Command _searchCommand;
         private bool _isCategoryListVisible;
         private bool _isRecipeListVisible;
@@ -73,7 +71,31 @@ namespace cootathome.ViewModels
             MessagingCenter.Subscribe<AddCategoryViewModel>(this, MessageNames.CategoryChangedMessage, OnCategoryChanges);
             MessagingCenter.Subscribe<CategoryDetailViewModel>(this, MessageNames.CategoryChangedMessage, OnCategoryUpdate);
             MessagingCenter.Subscribe<AddNewReceipeViewModel>(this, MessageNames.RecipeAdded, UpdateMessageAboutRecipe);
+            MessagingCenter.Subscribe<RecipeDetailViewModel>(this, MessageNames.RecipeDeleted, OnRecipeChange); 
+            MessagingCenter.Subscribe<RecipeDetailViewModel>(this, MessageNames.RecipeUpdate, OnRecipeChange);
             MessagingCenter.Subscribe<CategoryDetailViewModel>(this, MessageNames.CategoryDeleted, UpdateMessageAboutCategory);
+            MessagingCenter.Subscribe<LoginPageViewModel, User>(this, MessageNames.TakeTheUser, OnGetUser);
+        }
+
+        private async void OnRecipeChange(RecipeDetailViewModel obj)
+        {
+            Recipes = (await _recipeDataService.GetAllRecipesOfUser(_userOnline.ID)).ToObservableCollection();
+            DoSearchCommand();
+        }
+
+        public override void CleanUp(INavigationService obj)
+        {
+            SearchedText = string.Empty;
+        }
+
+        private void OnGetUser(LoginPageViewModel arg1, User arg2)
+        {
+            _userOnline = arg2;
+        }
+
+        public override void InitializeItem(object parameter)
+        {
+            MessagingCenter.Send(this, MessageNames.GiveMeTheUserID);
         }
 
         private async void OnCategoryUpdate(CategoryDetailViewModel obj)
@@ -90,18 +112,18 @@ namespace cootathome.ViewModels
         private void OnRecipeSelectedCommand(Recipe obj)
         {
             _navigationService.NavigateTo(ViewNames.RecipeDetailView, obj);
-            //SearchedText = string.Empty;
         }
 
         private async void UpdateMessageAboutCategory(object obj)
         {
             Categories = (await _categoriesDataService.GetAllCategories()).ToObservableCollection();
+            Recipes = (await _recipeDataService.GetAllRecipesOfUser(_userOnline.ID)).ToObservableCollection();
             await _dialogService.ShowDialog(MessageNames.CategorySuccessfullyDeleted, "Success", "Ok");
         }
 
         private async void UpdateMessageAboutRecipe(AddNewReceipeViewModel obj)
         {
-            Recipes = (await _recipeDataService.GetAllRecipes()).ToObservableCollection();
+            Recipes = (await _recipeDataService.GetAllRecipesOfUser(_userOnline.ID)).ToObservableCollection();
             await _dialogService.ShowDialog(MessageNames.RecipeSuccsessfulMessage, "Success", "Ok");
         }
 
@@ -120,7 +142,7 @@ namespace cootathome.ViewModels
         public override async Task Initialize(object data)
         {
             Categories = (await _categoriesDataService.GetAllCategories()).ToObservableCollection();
-            Recipes = (await _recipeDataService.GetAllRecipes()).ToObservableCollection();
+            Recipes = (await _recipeDataService.GetAllRecipesOfUser(_userOnline.ID)).ToObservableCollection();
         }
 
         private void OnCategorySelectedCommand(Categories selectedCategory)
@@ -197,8 +219,6 @@ namespace cootathome.ViewModels
                 RaisePropertyChanged();
             }
         }
-
-
 
         public bool isCategoryListVisible
         {

@@ -1,7 +1,5 @@
 ﻿using cootathome.Models;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace cootathome.Services
@@ -21,6 +19,11 @@ namespace cootathome.Services
         public async Task<List<Recipe>> GetAllRecipesWithID(int CategoryID, int UserID)
         {
             return await App.Database.GetAllRecipesbyId(CategoryID,UserID);
+        }
+
+        public async Task<List<Recipe>> GetAllRecipesOfUser(int UserID)
+        {
+            return await App.Database.GetAllRecipesbyUser(UserID);
         }
 
         public async Task<Recipe> GetAsyncRecipe(string recipe)

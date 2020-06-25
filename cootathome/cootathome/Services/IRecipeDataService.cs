@@ -1,7 +1,5 @@
 ﻿using cootathome.Models;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 namespace cootathome.Services
 {
@@ -13,6 +11,8 @@ namespace cootathome.Services
         Task<List<Recipe>> GetAllRecipes();
 
         Task<List<Recipe>> GetAllRecipesWithID(int CategoryID, int UserID);
+
+        Task<List<Recipe>> GetAllRecipesOfUser(int UserID);
 
         Task<Recipe> GetAsyncRecipe(string recipe);
 

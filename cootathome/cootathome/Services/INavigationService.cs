@@ -1,7 +1,4 @@
-﻿using cootathome.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 using Xamarin.Forms;
 
 namespace cootathome.Services

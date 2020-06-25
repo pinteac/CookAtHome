@@ -4,14 +4,11 @@ using cootathome.Utlity;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Essentials;
 using System.Linq;
-using System.Runtime.CompilerServices;
 
 namespace cootathome.ViewModels
 {
@@ -70,23 +67,28 @@ namespace cootathome.ViewModels
 
         private async void OnReadDescription(object obj)
         {
-            try
+            if (SelectedRecipeDescription != string.Empty)
             {
-                var locales = await TextToSpeech.GetLocalesAsync();
-                Locale locale = (Locale)locales.ElementAt(50);
-                if (SelectedRecipeDescription != string.Empty)
+                try
                 {
-                    await TextToSpeech.SpeakAsync(SelectedRecipeDescription, new SpeechOptions()
+                    var locales = await TextToSpeech.GetLocalesAsync();
+                    Locale locale = (Locale)locales.ElementAt(50);
+                    if (SelectedRecipeDescription != string.Empty)
                     {
-                        Locale = locale
-                    });
+                        await TextToSpeech.SpeakAsync(SelectedRecipeDescription, new SpeechOptions()
+                        {
+                            Locale = locale
+                        });
+                    }
+                }
+                catch (Exception)
+                {
+                    isMessageVisible = true;
+                    CannotReadText = MessageNames.CannotReadDescription;
                 }
             }
-            catch(Exception)
-            {
-                isMessageVisible = true;
-                CannotReadText = MessageNames.CannotReadDescription;
-            }
+            else
+               await _dialogService.ShowDialog(MessageNames.RecipeHasNoDescription, "Failure", "Ok");
         }
 
         private async void OnUploadImage(object obj)
@@ -136,8 +138,15 @@ namespace cootathome.ViewModels
         private async void OnDeleteRecipe(Recipe recipe)
         {
             recipe = _selectedRecipe;
-            await _recipeDataService.DeleteAsyncRecipe(recipe);
-            MessagingCenter.Send(this, MessageNames.RecipeDeleted);
+            try
+            {
+                await _recipeDataService.DeleteAsyncRecipe(recipe);
+                MessagingCenter.Send(this, MessageNames.RecipeDeleted);
+            }
+            catch(Exception)
+            {
+                await _dialogService.ShowDialog(MessageNames.RecipeNotDeleted, "Failure", "Ok");
+            }
             _navigationService.GoBack();
         }
 
