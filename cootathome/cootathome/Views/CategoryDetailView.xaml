@@ -4,16 +4,14 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:behaviors="clr-namespace:cootathome.Behaviors"
              mc:Ignorable="d"
-             Title="Cook at home"
+             Title="Category"
              x:Class="cootathome.Views.CategoryDetailView">
 
     <Grid BackgroundColor="Black">
         <Grid.RowDefinitions>
             <RowDefinition Height="60"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-
         </Grid.RowDefinitions>
-
         <Grid Grid.Row="0" Margin="5" ColumnSpacing="2" BackgroundColor="Black" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="180"></ColumnDefinition>
@@ -25,20 +23,16 @@
             <Button Grid.Column="1" BackgroundColor="#DAB30A" TextColor="WhiteSmoke" Text="Save" Command="{Binding SaveCategory}" Margin="25,0,10,16" IsVisible="{Binding isSaveButtonVisible}"  />
             <Button Grid.Column="2" BackgroundColor="#DAB30A" TextColor="WhiteSmoke" Text="Delete" Command="{Binding DeleteCategory}" Margin="10,0,25,16" IsEnabled="{Binding isDeleteEnabled}" />
         </Grid>
-
         <Grid Grid.Row="1"  HeightRequest="250"  Margin="5" BackgroundColor="Black" RowSpacing="2" IsVisible="{Binding isEditVisible}">
             <Grid HeightRequest="250"  Margin="5" BackgroundColor="Black" RowSpacing="2">
                 <Grid.RowDefinitions>
-
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="50"></RowDefinition>
-                    
                 </Grid.RowDefinitions>
                 <Image Grid.Row="0" VerticalOptions="Start" Margin="2,2,1,10" Source="{Binding SelectedCategoryImageURL}" Aspect="AspectFill"></Image>
                 <Button Grid.Row="1" Margin="0,0,0,0" TextColor="White" Text="Add image" BackgroundColor="DarkGray" Command="{Binding AddCategoryImageURL}"/>
             </Grid>
         </Grid>
-
         <ListView HasUnevenRows="True" Grid.Row="1" ItemsSource="{Binding Recipes}"
                         x:Name="CategoryListView" CachingStrategy="RecycleElement" IsVisible="{Binding isRecipeVisible}" >
             <ListView.Behaviors>
@@ -63,7 +57,5 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
     </Grid>
-    
 </ContentPage>

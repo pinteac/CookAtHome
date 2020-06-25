@@ -1,13 +1,10 @@
 ﻿using cootathome.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace cootathome.Utlity
 {
     public static class ViewModelLocator
     {
-        public static LoginPageViewModel loginPageViewModel { get; set; } = new LoginPageViewModel(App.NavigationService, App.UserDataService);
+        public static LoginPageViewModel loginPageViewModel { get; set; } = new LoginPageViewModel(App.NavigationService, App.UserDataService, App.DialogService);
 
         public static RegisterPageViewModel registerPageViewModel { get; set; } = new RegisterPageViewModel(App.NavigationService, App.UserDataService);
 

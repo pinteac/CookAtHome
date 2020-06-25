@@ -13,18 +13,14 @@
     </ContentPage.ToolbarItems>
 
     <Grid RowSpacing="5" BackgroundColor="Black">
-
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-
-        <SearchBar Grid.Row="0" BackgroundColor="LightGray" Placeholder="Search" Text="{Binding SearchedText, Mode=TwoWay}"  
+        <SearchBar Grid.Row="0" BackgroundColor="LightGray" Placeholder="Search for a recipe" Text="{Binding SearchedText, Mode=OneWayToSource}"  
                                                                                     SearchCommand="{Binding SearchCommand}" Opacity="0.75"/>
-        
         <Button Grid.Row="1" BackgroundColor="#DAB30A" TextColor="WhiteSmoke" Text="Add recipe" Command="{Binding GoToReceipe}" Opacity="0.8"/>
-
         <Grid Grid.Row="2" Opacity="0.65">
             <ListView HasUnevenRows="True"  ItemsSource="{Binding Recipes}"
                         x:Name="RecipeListView" CachingStrategy="RecycleElement" IsVisible="{Binding isRecipeListVisible}" >
@@ -53,7 +49,6 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
             <ListView HasUnevenRows="True" ItemsSource="{Binding Categories}"
                         x:Name="CategoryListView" CachingStrategy="RecycleElement" IsVisible="{Binding isCategoryListVisible}" >
                 <ListView.Behaviors>

@@ -1,10 +1,8 @@
 ﻿using cootathome.Utlity;
 using cootathome.ViewModels;
-using cootathome.Views;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using System.Text;
 using Xamarin.Forms;
 
 namespace cootathome.Services
@@ -31,8 +29,6 @@ namespace cootathome.Services
         {
             MainPage.Navigation.PopToRootAsync();
         }
-
-
 
         // Navigates to the next page by pushing the next page received
         public void NavigateTo(string pageKey, object parameter = null, INavigationService obj = null)

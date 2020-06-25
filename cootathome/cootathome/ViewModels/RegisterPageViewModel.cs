@@ -2,12 +2,7 @@
 using cootathome.Services;
 using cootathome.Utlity;
 using System;
-using System.Collections.Generic;
-using System.Net.Mail;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Windows.Input;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace cootathome.ViewModels
@@ -39,6 +34,11 @@ namespace cootathome.ViewModels
 
             RegisterCommand = new Command(OnRegisterCommand);
             LoginCommand = new Command(MoveToLoginPage);
+        }
+
+        public override void CleanUp(INavigationService obj)
+        {
+            RegisterErrorMsg = null;
         }
 
         private async void OnRegisterCommand()
@@ -73,9 +73,7 @@ namespace cootathome.ViewModels
                                             _userName.FirstName = RegisterFirstName;
                                             _userName.LastName = RegisterLastName;
                                             _userName.UserName = RegisterUserName;
-                                            // several checks for password could be made 
                                             _userName.Password = RegisterPassword;
-                                            //several changes to be made if we want to save the email as a real one
                                             _userName.Email = RegisterEmail;
                                             await _userDataService.RegisterUser(_userName);
                                         }
@@ -97,6 +95,7 @@ namespace cootathome.ViewModels
 
             if (RegisterErrorMsg == null)
             {
+                MessagingCenter.Send(this, MessageNames.RegisterdUser);
                 _navigationService.GoBack();
             }
         }

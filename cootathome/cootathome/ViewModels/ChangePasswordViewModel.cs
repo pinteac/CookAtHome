@@ -2,8 +2,6 @@
 using cootathome.Services;
 using cootathome.Utlity;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -36,10 +34,10 @@ namespace cootathome.ViewModels
             ChangePasswordCommand = new Command(OnChangePasswordCommand);
         }
 
-        //public override void InitializeItem(object parameter)
-        //{
-        //    MessagingCenter.Send(this, MessageNames.CleanUp);
-        //}
+        public override void CleanUp(INavigationService obj)
+        {
+            CPErrorMsg = null;
+        }
         private async void OnChangePasswordCommand(object obj)
         {
             CPErrorMsg = null;
@@ -75,6 +73,7 @@ namespace cootathome.ViewModels
 
             if (CPErrorMsg == null)
             {
+                MessagingCenter.Send(this, MessageNames.PasswordChanged);
                 _navigationService.GoBack();
             }
         }

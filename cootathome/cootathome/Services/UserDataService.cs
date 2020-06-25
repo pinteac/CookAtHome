@@ -1,8 +1,5 @@
 ﻿using cootathome.Models;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using cootathome.Data;
 using System.Threading.Tasks;
 
 namespace cootathome.Services

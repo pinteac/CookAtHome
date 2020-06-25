@@ -1,10 +1,8 @@
-﻿using cootathome;
-using cootathome.Models;
+﻿using cootathome.Models;
 using cootathome.Services;
 using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices.ComTypes;
-using System.Text;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 namespace cookathome.Tests.Mocks
@@ -27,8 +25,13 @@ namespace cookathome.Tests.Mocks
                 throw new Exception();
             else
             {
+                var count = mockCategories.Count;
                 mockCategories.Add(newCategory);
-                return 1;
+
+                if (mockCategories.Count == count + 1)
+                    return 1;
+                else
+                    return 0;
             }
         }
 

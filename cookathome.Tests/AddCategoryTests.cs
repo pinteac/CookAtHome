@@ -2,7 +2,6 @@ using cookathome.Tests.Mocks;
 using cootathome.Services;
 using cootathome.ViewModels;
 using Moq;
-using System;
 using Xunit;
 
 namespace cookathome.Tests

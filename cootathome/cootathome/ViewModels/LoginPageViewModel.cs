@@ -2,10 +2,6 @@
 using cootathome.Services;
 using cootathome.Utlity;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -15,6 +11,7 @@ namespace cootathome.ViewModels
     {
         private INavigationService _navigationService;
         private IUserDataService _userDataService;
+        private IDialogService _dialogService;
 
         private User _userName;
         private string userName;
@@ -27,10 +24,11 @@ namespace cootathome.ViewModels
 
         public ICommand ChangePasswordCommand { get; }
 
-        public LoginPageViewModel(INavigationService navigationService, IUserDataService userDataService)
+        public LoginPageViewModel(INavigationService navigationService, IUserDataService userDataService, IDialogService dialogService)
         {
             _navigationService = navigationService;
             _userDataService = userDataService;
+            _dialogService = dialogService;
 
             _userName = new User();
 
@@ -40,9 +38,11 @@ namespace cootathome.ViewModels
 
             MessagingCenter.Subscribe<AddNewReceipeViewModel>(this, MessageNames.GiveMeTheUserID, OnUserIDRequest);
             MessagingCenter.Subscribe<CategoryDetailViewModel>(this, MessageNames.GiveMeTheUserID, OnUserIDRequest);
+            MessagingCenter.Subscribe<HomePageViewModel>(this, MessageNames.GiveMeTheUserID, OnUserIDRequest);
             MessagingCenter.Subscribe<HomePageViewModel>(this, MessageNames.Logout, OnLogout);
-
             MessagingCenter.Subscribe<NavigationService>(this, MessageNames.CleanUp, CleanUp);
+            MessagingCenter.Subscribe<ChangePasswordViewModel>(this, MessageNames.PasswordChanged, OnPasswordChanged);
+            MessagingCenter.Subscribe<RegisterPageViewModel>(this, MessageNames.RegisterdUser, OnRegisteredUser);
         }
 
         public override void CleanUp(INavigationService obj)
@@ -56,6 +56,16 @@ namespace cootathome.ViewModels
             UserName = null;
             Password = null;
             _userName = null;
+        }
+
+        private async void OnPasswordChanged(ChangePasswordViewModel obj)
+        {
+            await _dialogService.ShowDialog(MessageNames.PasswordChanged, "Success", "Ok");
+        }
+
+        private async void OnRegisteredUser(RegisterPageViewModel obj)
+        {
+            await _dialogService.ShowDialog(MessageNames.RegisterdUser, "Success", "Ok");
         }
 
         private void OnUserIDRequest(object obj)
@@ -82,26 +92,17 @@ namespace cootathome.ViewModels
             if (ErrorMsg == null)
             {
                 _navigationService.NavigateTo(ViewNames.HomePageView, MessageNames.UserLoggedIn);
-                //UserName = null;
-                //Password = null;
-                //ErrorMsg = null;
             }
         }
 
         private void MoveToRegister()
         {
             _navigationService.NavigateTo(ViewNames.RegisterPageView);
-            //UserName = null;
-            //Password = null;
-            //ErrorMsg = null;
         }
 
         private void MoveToChangePassword()
         {
             _navigationService.NavigateTo(ViewNames.ChangePasswordView);
-            //UserName = null;
-            //Password = null;
-            //ErrorMsg = null;
         }
 
         public string UserName

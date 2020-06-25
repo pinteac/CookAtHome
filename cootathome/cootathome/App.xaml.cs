@@ -1,12 +1,10 @@
 ﻿using cootathome.Data;
 using cootathome.Services;
 using cootathome.Utlity;
-using cootathome.ViewModels;
 using cootathome.Views;
 using System;
 using System.IO;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace cootathome
 {
@@ -40,7 +38,6 @@ namespace cootathome
             NavigationService.Configure(ViewNames.LoginPageView, typeof(LoginPageView));
             NavigationService.Configure(ViewNames.RegisterPageView, typeof(RegisterPageView));
             NavigationService.Configure(ViewNames.ChangePasswordView, typeof(ChangePasswordView));
-            NavigationService.Configure(ViewNames.MainPage, typeof(MainPage));
             NavigationService.Configure(ViewNames.HomePageView, typeof(HomePageView));
             NavigationService.Configure(ViewNames.AddNewReceipeView, typeof(AddNewReceipeView));
             NavigationService.Configure(ViewNames.AddCategoryView, typeof(AddCategoryView));

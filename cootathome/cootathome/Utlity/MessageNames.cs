@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 
 namespace cootathome.Utlity
 {
@@ -26,6 +24,8 @@ namespace cootathome.Utlity
         public const string RegisterException = "Please try again!";
         public const string RegisterUniqueException = "Username or email already existing! Please enter diferent credentials!";
         public const string RegisterWrongEmail = "Invalid email! Please re-type another email!";
+        public const string PasswordChanged = "The password has been successfully changed!";
+        public const string RegisterdUser = "You have registered successfully!";
 
         public const string CannotReadDescription = "Cannot read the description, because the device does not support this functionality!";
         public const string PhotoNotSupported = "Photo Upload not supported!";
@@ -47,5 +47,7 @@ namespace cootathome.Utlity
         public const string RecipeNameValidation = "Please add a recipe name!";
         public const string RecipeWithoutCategory = "Please select a category for your recipe!";
         public const string RecipeUpdate = "Recipe has been successfully updated!";
+        public const string RecipeHasNoDescription = "The recipe has no description!";
+        public const string RecipeNotDeleted = "Recipe couldn't be deleted!";
     }
 }
